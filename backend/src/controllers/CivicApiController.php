@@ -1,8 +1,9 @@
 <?php
 
-require_once( dirname(__FILE__) . '/../utils/CurlRequestHelper.php' );
+require_once dirname(__FILE__) . '/../utils/CurlRequestHelper.php';
 
-class CivicApiController {
+class CivicApiController
+{
 
     private Redis $redis;
     private String $bearerToken;
@@ -25,9 +26,9 @@ class CivicApiController {
      * Controller for /events/{?id} endpoint
      *
      * @return void
-     * 
      */
-    public function getEvents($params = null, String $id = null) {
+    public function getEvents($params = null, String $id = null)
+    {
         // use all events or single event url
         $url = $id ? API_BASE_URL . '/Events/' . $id : API_BASE_URL . '/Events';
 
@@ -42,7 +43,8 @@ class CivicApiController {
         echo json_encode($response);
     }
 
-    public function postEvent(Array $params) {
+    public function postEvent(Array $params)
+    {
 
         // format dates
         $params['startDate'] = date('Y-m-d H:i:s', strtotime($params['startDate']));
@@ -65,7 +67,6 @@ class CivicApiController {
      * or by getting it from redis cache
      *
      * @return void
-     * 
      */
     private function setBearerToken()
     {   

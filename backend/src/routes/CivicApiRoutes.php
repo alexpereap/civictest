@@ -2,7 +2,8 @@
 
 class CivicApiRoutes
 {
-    public static function routes() {
+    public static function routes()
+    {
 
         /**
          * Routes mapping for civic api actions

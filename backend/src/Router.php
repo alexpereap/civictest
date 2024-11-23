@@ -1,18 +1,24 @@
 <?php
 
-require_once (  dirname(__FILE__) . '/routes/CivicApiRoutes.php');
-require_once (  dirname(__FILE__) . '/controllers/CivicApiController.php');
+require_once dirname(__FILE__) . '/routes/CivicApiRoutes.php';
+require_once dirname(__FILE__) . '/controllers/CivicApiController.php';
 
 /**
  * Handles all app routing and executes the right controller method
  * According to the routes map
  */
 class Router
-{   
+{
+   
     private Array $requestPath;
     private string $requestMethod;
     private Array $civicApiRoutes;
 
+    /**
+     * [Description for __construct]
+     *
+     * 
+     */
     public function __construct() 
     {
         $this->requestPath = explode('/', trim($_SERVER['REQUEST_URI']));
@@ -24,7 +30,6 @@ class Router
      * Handles routes in format /action/{id}
      *
      * @return void
-     * 
      */
     public function enable()
     {
@@ -35,9 +40,9 @@ class Router
                 $this->handlePreFlightRequest();
             }
 
-            // home page
+            // home-page, only for testing
             if ($_SERVER['REQUEST_URI'] === '/') {
-                echo "THE TEST HOME :)";
+                echo "Welcome, this is the app home";
                 exit;
             }
 
@@ -81,12 +86,11 @@ class Router
      * Handles the OPTIONS method preflight request
      *
      * @return void
-     * 
      */
     private function handlePreFlightRequest()
     {
-        header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
-        header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept' );
+        header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
         exit;
     }
 }

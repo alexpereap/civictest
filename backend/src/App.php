@@ -1,6 +1,6 @@
 <?php
 
-require_once( dirname(__FILE__) . '/Router.php' );
+require_once dirname(__FILE__) . '/Router.php';
 
 // Allows access from any origin to allow frontend app to do request
 header("Access-Control-Allow-Origin: *");

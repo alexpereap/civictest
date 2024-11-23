@@ -4,19 +4,20 @@
  * A helper for making curl request
  */
 class CurlRequestHelper
-{   
+{
+   
 
     private CurlHandle $curl;
 
     /**
      *
      * @param String $url
-     * @param Array $headers
-     * @param Bool $isPost
-     * @param null $postFields
-     * 
+     * @param Bool   $isPost
+     * @param String $postFields
+     * @param String $authHeader
      */
-    public function __construct(String $url, Bool $isPost = false, String $postFields = null, String $authHeader = null) {
+    public function __construct(String $url, Bool $isPost = false, String $postFields = null, String $authHeader = null)
+    {
 
         $this->curl = curl_init();
         $curlConfig = [
@@ -53,22 +54,23 @@ class CurlRequestHelper
      * Makes a request according to constructor settings
      *
      * @return json
-     * 
      */
     public function makeRequest()
     {
         $response = curl_exec($this->curl);
 
         if (curl_errno($this->curl)) {
-            return json_encode([
+            return json_encode(
+                [
                 'success' => false,
                 'error' => curl_error($this->curl),
-            ]);
+                ]
+            );
         } else {
             $jsonResponse = json_decode($response, true);
 
             // if jsonResponse is an object we successfully got data from API
-            if (!is_null($jsonResponse)){
+            if (!is_null($jsonResponse)) {
                 $jsonResponse['success'] = true;
                 return $jsonResponse;
             }
