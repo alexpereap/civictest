@@ -43,6 +43,11 @@ class CivicApiController {
     }
 
     public function postEvent(Array $params) {
+
+        // format dates
+        $params['startDate'] = date('Y-m-d H:i:s', strtotime($params['startDate']));
+        $params['endDate'] = date('Y-m-d H:i:s', strtotime($params['endDate']));
+
         $payload = json_encode($params);
         $curlRequest = new CurlRequestHelper(
             API_BASE_URL . '/Events',

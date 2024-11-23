@@ -29,6 +29,12 @@ class Router
     public function enable()
     {
         try {
+
+            // preflight request handling
+            if (strtolower(trim($this->requestMethod)) === 'options') {
+                $this->handlePreFlightRequest();
+            }
+
             // home page
             if ($_SERVER['REQUEST_URI'] === '/') {
                 echo "THE TEST HOME :)";
@@ -69,5 +75,18 @@ class Router
         } catch (Exception $e) {
             echo 'Unexpected error occurred:' . $e->getMessage();
         }
+    }
+
+    /**
+     * Handles the OPTIONS method preflight request
+     *
+     * @return void
+     * 
+     */
+    private function handlePreFlightRequest()
+    {
+        header( 'Access-Control-Allow-Methods: GET, POST, OPTIONS' );
+        header( 'Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept' );
+        exit;
     }
 }
