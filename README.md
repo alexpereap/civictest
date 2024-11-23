@@ -5,7 +5,7 @@ To run this application you should have docker and node js (18+) installed in yo
 1. Run the backend server
 ```sh
 cd .docker
-docker-compose up --build
+docker compose up --build
 ```
 2. Run the frontend
 ```sh
