@@ -1,0 +1,4 @@
+redis_storage
+.vscode
+*.env
+*.idea

@@ -1,0 +1,21 @@
+services:
+  civic-php8-apache:
+    build:
+      context: ./php8-apache
+    hostname: development.container
+    env_file:
+      - ./php8-apache/env-files/backend.env
+    volumes:
+      - ../backend:/var/www/civic-backend
+    ports:
+      - "80:80"
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - ../redis_storage:/root/redis
+    environment:
+      - REDIS_PASSWORD=
+      - REDIS_PORT=6379
