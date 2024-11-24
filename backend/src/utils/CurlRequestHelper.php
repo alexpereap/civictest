@@ -16,7 +16,12 @@ class CurlRequestHelper
      * @param String $postFields
      * @param String $authHeader
      */
-    public function __construct(String $url, Bool $isPost = false, String $postFields = null, String $authHeader = null)
+    public function __construct(
+            String $url,
+            Bool $isPost = false,
+            String $postFields = null,
+            String $authHeader = null
+        )
     {
 
         $this->curl = curl_init();
