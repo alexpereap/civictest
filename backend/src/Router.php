@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/routes/CivicApiRoutes.php';
+require_once dirname(__FILE__) . '/routes/MainRoutes.php';
 require_once dirname(__FILE__) . '/controllers/CivicApiController.php';
 
 /**
@@ -12,7 +12,7 @@ class Router
    
     private Array $requestPath;
     private string $requestMethod;
-    private Array $civicApiRoutes;
+    private Array $mainRoutes;
 
     /**
      * [Description for __construct]
@@ -23,7 +23,7 @@ class Router
     {
         $this->requestPath = explode('/', trim($_SERVER['REQUEST_URI']));
         $this->requestMethod = $_SERVER['REQUEST_METHOD'];
-        $this->civicApiRoutes = CivicApiRoutes::routes();
+        $this->mainRoutes = MainRoutes::routes();
     }
 
     /**
@@ -53,8 +53,8 @@ class Router
             $id = $this->requestPath[2] ?? null;
 
             // gets the controller acction according to the routes maping
-            $controllerAction = isset($this->civicApiRoutes[$this->requestMethod][$action]) 
-                ? $this->civicApiRoutes[$this->requestMethod][$action]
+            $controllerAction = isset($this->mainRoutes[$this->requestMethod][$action]) 
+                ? $this->mainRoutes[$this->requestMethod][$action]
                 : false;
 
             if ($controllerAction) {

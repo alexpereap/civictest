@@ -1,6 +1,6 @@
 <?php
 
-class CivicApiRoutes
+class MainRoutes
 {
     public static function routes()
     {
