@@ -6,7 +6,9 @@ class CivicApiRoutes
     {
 
         /**
-         * Routes mapping for civic api actions
+         * Routes mapping for url endpoints and controllers
+         * GET: /events/{id} = calls getEvents controller
+         * POST: /event = calls postEvent controller
          */
         return [
             'GET' => [
