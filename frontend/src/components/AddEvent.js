@@ -6,6 +6,7 @@ function AddEvent() {
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [formDisabled, setFormDisabled] = useState(false);
   const navigate = useNavigate();
 
   function goBackHome() {
@@ -27,6 +28,7 @@ function AddEvent() {
     };
 
     try {
+      setFormDisabled(true);
       const response = await fetch("http://civic.local/event", {
         method: "post",
         headers: {
@@ -42,9 +44,11 @@ function AddEvent() {
         goBackHome();
       } else {
         alert(`Something went wrong ${data?.error}`);
+        setFormDisabled(false);
       }
     } catch (e) {
       console.error(e);
+      setFormDisabled(false);
     }
   }
 
@@ -55,7 +59,7 @@ function AddEvent() {
         {"<<"} Go back
       </Link>
       <div>&nbsp;</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} disabled={formDisabled && "disabled"}>
         <div className="form-group">
           <label htmlFor="title">Title</label>
           <input
@@ -101,7 +105,11 @@ function AddEvent() {
             onChange={(e) => setEndDate(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button
+          disabled={formDisabled && "disabled"}
+          type="submit"
+          className="btn btn-primary"
+        >
           Submit
         </button>
       </form>
