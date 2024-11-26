@@ -24,13 +24,14 @@ The PHP backend provides a series of endpoints that communicate with the civic p
 
 ## Functionality details
 
-- The backend of this application is built using RAW PHP, without using any frameworks, or any composer libraries (that may be the same used by frameworks) show casing the use of RAW php skills to develop the whole application.
+- The backend of this application is built using RAW PHP, without using any frameworks, or any composer libraries (that may be the same used by frameworks) showcasing the use of RAW php skills to develop the whole application.
 - The frontend is built in React using the bootstrap CSS library.
 - Additionally, an Apache server and a Redis server are used to serve the backend, and are configured in a docker container, for ease of use.
 
 ## Design patterns
 - This project follows the SOLID principles, implementing a separation of concerns by using a structured and organized folder structure, making use of single responsibility object oriented classes.
-- It also implements helper classes and methods to avoid repeating code and instead encourage the reusability of these components (DRY principle).
+- BRIDGE design pattern by making the backend php an intermediary between the frontend and the civic plus api.
+- Implements helper classes and methods to avoid repeating code and instead encourage the reusability of these components (DRY principle).
 
 ### Request and Reponse cycle
 - Request cycle: Frontend APP ==> consumes endpoints from the PHP backend => the PHP backend authenticates against the civicplus api and gets data from its endpoints using CURL
