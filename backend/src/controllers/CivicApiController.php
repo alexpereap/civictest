@@ -23,9 +23,8 @@ class CivicApiController
     }
 
     /**
-     * Controller for /events/{?id} endpoint
+     * Controller for /events/{?id} endpoint - gets events from CIVIC API
      *
-     * @return void
      */
     public function getEvents($params = null, String $id = null)
     {
@@ -34,7 +33,7 @@ class CivicApiController
 
         $curlRequest = new CurlRequestHelper(
             $url,
-            false,
+            'GET',
             null,
             $this->bearerToken,
         );
@@ -43,6 +42,12 @@ class CivicApiController
         echo json_encode($response);
     }
 
+    /**
+     * Controller for /event endpoint - creates an event using CIVIC API
+     *
+     * @param Array $params
+     * 
+     */
     public function postEvent(Array $params)
     {
 
@@ -53,7 +58,7 @@ class CivicApiController
         $payload = json_encode($params);
         $curlRequest = new CurlRequestHelper(
             API_BASE_URL . '/Events',
-            true,
+            'POST',
             $payload,
             $this->bearerToken
         );

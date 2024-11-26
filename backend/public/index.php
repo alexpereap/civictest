@@ -4,13 +4,12 @@
  * Will load everything needed for the aplication to run
  */
 
-// Allows access from any origin to allow frontend app to do request
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Headers: *");
-
 // loads config variables
 require_once dirname(__FILE__) . '/../src/config/config.php';
 require_once dirname(__FILE__) . '/../src/App.php';
+
+// Allows access from only frontend hostname
+header('Access-Control-Allow-Origin: ' . FRONTEND_HOSTNAME);
 
 // starts App
 new App();
